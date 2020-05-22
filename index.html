@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>udemyの復習</title>
+</head>
+
+<body>
+  <script>
+    'use strict';
+    {
+      //-------------------------forEach----------------------------
+      const names = [
+        'jon', 'mamoru', 'takeru', 'satoshi'
+      ];
+      names.forEach(name => {
+        console.log(name); //jon,mamoru,takeru,satoshi
+      });
+      const names2 = [
+        { name: 'takumi', age: 14 },
+        { name: 'minoru', age: 19 },
+        { name: 'misa', age: 32 },
+        { name: 'jin', age: 5 },
+      ];
+      names2.forEach(name2 => {
+        // console.log(name2); //{...},{...},{...},{...}
+        console.log(name2.name); //takumi,minoru,misa,jin
+        console.log(name2.age); //14,19,32,5
+      });
+      //---------------------------map----------------------------
+      const colors = [
+        'red', 'yellow', 'blue', 'black'
+      ];
+      colors.map(color => {
+        return console.log(color); //red,yellow,blue,black
+      });
+      const colors2 = [
+        { name: 'a', type: 'aaa' },
+        { name: 'b', type: 'bbb' },
+        { name: 'c', type: 'cdd' },
+        { name: 'd', type: 'ddd' },
+      ];
+      colors2.map(color2 => {
+        return console.log(color2); //{...},{...},{...},{...}
+        return console.log(color2.name); //a,b,c,d
+        return console.log(color2.type); //aaa,bbb,ccc,ddd
+      });
+      const nameList = colors2.map(name => {
+        return name.name
+      });
+      console.log(nameList); //['a','b','c','d'];
+
+      const images = [
+        { height: 10, width: 30 },
+        { height: 20, width: 90 },
+        { height: 54, width: 32 }
+      ];
+      const areas = [];
+      images.map(image => {
+        return areas.push(image.height * image.width);
+      });
+      console.log(areas); //[300,1800,1728]
+
+      //----------------------map/pluck--------------------------      
+      function pluck(array, property) {
+        // pluck関数の中身を実装してください
+        return array.map(item => {
+          return item[property];
+        });
+      }
+
+      var colorObjects = [{ color: '赤', type: 'red' }, { color: '青', type: 'blue' }, { color: '黄色', type: 'yellow' }];
+
+      var colorNames = pluck(colorObjects, 'color');
+      console.log(colorNames)
+      //---------------------------filter---------------------------
+      const foods = [
+        { name: 'バナナ', type: 'フルーツ', quantity: 0, price: 1 },
+        { name: 'ラーメン', type: 'ごはん', quantity: 15, price: 20 },
+        { name: 'みかん', type: 'フルーツ', quantity: 20, price: 3 },
+        { name: 'レタス', type: '野菜', quantity: 6, price: 5 },
+        { name: 'トマト', type: '野菜', quantity: 10, price: 2 },
+      ];
+      const foodName = [];
+      foods.filter(food => {
+        return console.log(food); //{...},{...},{...},{...},{...}
+      });
+      foods.filter(food => {
+        return console.log(food.name); //バナナ,ラーメン,みかん,;レタス,トマト
+      });
+      foods.filter(food => {
+        return console.log(food.type); //フルーツ,ごはん,フルーツ,野菜,野菜
+      });
+      foods.filter(food => {
+        return foodName.push(food.type === 'フルーツ' && food.quantity > 1);
+      });
+      console.log(foodName); //[false,false,true,false,false]
+
+      //--------------------filter/同じidの投稿を表示--------------
+      const post = { id: 4, title: '初めての投稿！' };
+      const comments = [
+        { postId: 4, content: 'いい記事ですね' },
+        { postId: 3, content: '勉強になりました' },
+        { postId: 4, content: 'なるほど' },
+      ];
+
+      //あるpostに関連したcommentsを取ってくるfunction
+      const commentForPost = (post, comments) => {
+        return comments.filter(comment => {
+          return comment.postId === post.id;
+        });
+      }
+      console.log(commentForPost(post, comments)); //postIdが4のobjのみが出力
+
+    }
+  </script>
+</body>
+
+</html>
