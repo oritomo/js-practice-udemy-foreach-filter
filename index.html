@@ -93,10 +93,14 @@
       foods.filter(food => {
         return console.log(food.type); //フルーツ,ごはん,フルーツ,野菜,野菜
       });
-      foods.filter(food => {
+       foods.filter(food => {
         return foodName.push(food.type === 'フルーツ' && food.quantity > 1);
       });
       console.log(foodName); //[false,false,true,false,false]
+      const foodList = foods.filter(food=>{
+        return food.type==='フルーツ';
+      });
+      console.log(foodList);
 
       //--------------------filter/同じidの投稿を表示--------------
       const post = { id: 4, title: '初めての投稿！' };
